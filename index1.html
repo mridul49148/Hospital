@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sushila Hospital — Best Multi-Speciality Hospital in Delhi NCR, Ghaziabad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue:    #1A6DC4;
+      --blue-dk: #0D2B4E;
+      --blue-lt: #EEF5FF;
+      --blue-md: #2F80ED;
+      --white:   #FFFFFF;
+      --bg:      #F8FAFC;
+      --ink:     #111827;
+      --ink2:    #374151;
+      --muted:   #6B7280;
+      --rule:    #E5E7EB;
+      --green:   #059669;
+      --red:     #DC2626;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+    /* ── TOP BAR ── */
+    .topbar { background: var(--blue-dk); padding: 0.45rem 5vw; display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: rgba(255,255,255,0.7); }
+    .topbar-right { display: flex; align-items: center; gap: 1.2rem; }
+    .emergency-badge { background: var(--red); color: #fff; padding: 0.18rem 0.65rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; border-radius: 3px; }
+    .topbar a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    .topbar a:hover { color: #fff; }
+    .top-sep { color: rgba(255,255,255,0.2); }
+
+    /* ── NAV ── */
+    nav { background: var(--white); border-bottom: 1px solid var(--rule); position: sticky; top: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 68px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-brand img { height: 44px; object-fit: contain; }
+    .nav-brand-text { display: flex; flex-direction: column; }
+    .nav-brand-name { font-size: 1rem; font-weight: 800; color: var(--blue-dk); line-height: 1.1; }
+    .nav-brand-sub { font-size: 0.6rem; color: var(--blue); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .nav-links { display: flex; list-style: none; height: 68px; }
+    .nav-links a { display: flex; align-items: center; height: 68px; padding: 0 1rem; font-size: 0.82rem; font-weight: 500; color: var(--ink2); text-decoration: none; border-bottom: 3px solid transparent; margin-bottom: -1px; transition: color .2s, border-color .2s; }
+    .nav-links a:hover { color: var(--blue); border-bottom-color: var(--blue); }
+    .nav-book { background: var(--blue); color: #fff; padding: 0.6rem 1.4rem; border-radius: 6px; font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: background .2s; white-space: nowrap; }
+    .nav-book:hover { background: var(--blue-md); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+    /* ── HERO ── */
+    .hero { background: linear-gradient(135deg, var(--blue-dk) 0%, #1a4070 100%); padding: 60px 5vw; display: grid; grid-template-columns: 1fr 460px; gap: 4rem; align-items: center; min-height: 92vh; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 0.35rem 1rem; border-radius: 100px; font-size: 0.72rem; font-weight: 500; color: rgba(255,255,255,0.85); margin-bottom: 1.8rem; }
+    .hero-badge::before { content: '●'; color: #34D399; font-size: 0.45rem; }
+    .hero h1 { font-size: clamp(2rem, 4.5vw, 3.4rem); font-weight: 800; line-height: 1.15; color: #fff; margin-bottom: 1.3rem; }
+    .hero h1 span { color: #60B4FF; }
+    .hero-sub { font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.68); max-width: 500px; margin-bottom: 2.2rem; font-weight: 300; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.8rem; }
+    .btn-white { background: #fff; color: var(--blue-dk); padding: 0.85rem 2rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: background .2s; }
+    .btn-white:hover { background: var(--blue-lt); }
+    .btn-outline-w { border: 2px solid rgba(255,255,255,0.3); color: #fff; padding: 0.85rem 2rem; border-radius: 6px; font-size: 0.85rem; font-weight: 500; text-decoration: none; transition: all .2s; }
+    .btn-outline-w:hover { border-color: #fff; }
+    .hero-stats { display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 2rem; }
+    .hstat { padding-right: 2rem; margin-right: 2rem; border-right: 1px solid rgba(255,255,255,0.12); }
+    .hstat:last-child { border-right: none; margin-right: 0; }
+    .hstat-num { font-size: 1.7rem; font-weight: 800; color: #fff; line-height: 1; }
+    .hstat-label { font-size: 0.7rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+
+    /* Hero right panel */
+    .hero-right { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+    .hero-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .hero-card-strip { padding: 1.4rem; background: #fff; display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--rule); }
+    .hcs-icon { width: 42px; height: 42px; background: var(--blue-lt); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .hcs-text strong { display: block; font-size: 0.88rem; color: var(--ink); }
+    .hcs-text span { font-size: 0.77rem; color: var(--muted); }
+
+    /* ── QUICK DEPT STRIP ── */
+    .dept-strip { background: var(--white); border-bottom: 1px solid var(--rule); padding: 1.2rem 5vw; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; }
+    .dept-strip::-webkit-scrollbar { display: none; }
+    .ds-item { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; padding: 0.5rem 1.5rem; border-right: 1px solid var(--rule); white-space: nowrap; text-decoration: none; transition: background .2s; cursor: pointer; }
+    .ds-item:last-child { border-right: none; }
+    .ds-item:hover { background: var(--blue-lt); }
+    .ds-icon { font-size: 1.4rem; }
+    .ds-label { font-size: 0.7rem; font-weight: 600; color: var(--ink2); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 5rem 5vw; }
+    .section-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.6rem; }
+    h2.sh { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; line-height: 1.2; color: var(--blue-dk); margin-bottom: 1rem; }
+    .slead { font-size: 0.97rem; line-height: 1.8; color: var(--muted); max-width: 560px; }
+
+    /* ── ABOUT ── */
+    .about-section { background: var(--bg); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-img { width: 100%; border-radius: 12px; display: block; object-fit: cover; }
+    .about-body { font-size: 0.95rem; line-height: 1.85; color: var(--ink2); margin-bottom: 1rem; }
+    .about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.8rem; }
+    .pillar { background: var(--white); border: 1px solid var(--rule); border-left: 3px solid var(--blue); border-radius: 6px; padding: 1.1rem 1rem; }
+    .pillar-icon { font-size: 1.2rem; margin-bottom: 0.4rem; }
+    .pillar-title { font-size: 0.85rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 0.3rem; }
+    .pillar-text { font-size: 0.78rem; color: var(--muted); line-height: 1.65; }
+    .why-list { margin-top: 1.8rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .why-item { display: flex; align-items: center; gap: 0.8rem; font-size: 0.88rem; color: var(--ink2); font-weight: 500; }
+    .why-item::before { content: '✓'; width: 22px; height: 22px; background: var(--blue); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; flex-shrink: 0; }
+
+    /* ── FACILITIES ── */
+    .facilities-section { background: var(--white); }
+    .facilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .facility-card { border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; transition: box-shadow .2s; }
+    .facility-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+    .facility-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+    .facility-body { padding: 1.3rem; }
+    .facility-name { font-size: 0.95rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 0.4rem; }
+    .facility-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── DEPARTMENTS ── */
+    .depts-section { background: var(--bg); }
+    .depts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 3rem; }
+    .dept-card { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 1.6rem 1.4rem; border-top: 3px solid transparent; transition: all .2s; }
+    .dept-card:hover { border-top-color: var(--blue); box-shadow: 0 6px 24px rgba(26,109,196,0.08); }
+    .dept-icon { font-size: 1.8rem; margin-bottom: 0.7rem; display: block; }
+    .dept-name { font-size: 0.9rem; font-weight: 700; color: var(--blue-dk); margin-bottom: 0.35rem; }
+    .dept-desc { font-size: 0.79rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── DOCTORS ── */
+    .doctors-section { background: var(--white); }
+    .doctors-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .doctor-card { background: var(--bg); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; transition: box-shadow .2s; }
+    .doctor-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+    .doctor-photo { height: 190px; background: var(--blue-lt); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .doctor-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .doctor-photo-ph { font-size: 4.5rem; opacity: 0.25; }
+    .doctor-info { padding: 1.2rem; }
+    .doctor-name { font-size: 0.93rem; font-weight: 700; color: var(--blue-dk); }
+    .doctor-spec { font-size: 0.74rem; color: var(--blue); font-weight: 600; margin: 0.2rem 0 0.6rem; }
+    .doctor-rating { display: flex; align-items: center; gap: 0.5rem; }
+    .stars { color: #F59E0B; font-size: 0.8rem; }
+    .rval { font-size: 0.78rem; font-weight: 600; color: var(--ink2); }
+    .rcnt { font-size: 0.72rem; color: var(--muted); }
+
+    /* ── GALLERY ── */
+    .gallery-section { background: var(--bg); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
+    .gallery-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; display: block; transition: transform .3s, filter .3s; filter: brightness(0.95); }
+    .gallery-img:hover { transform: scale(1.02); filter: brightness(1); }
+
+    /* ── WHY CHOOSE ── */
+    .why-section { background: var(--blue-dk); }
+    .why-section .section-tag { color: #60B4FF; }
+    .why-section h2.sh { color: #fff; }
+    .why-section .slead { color: rgba(255,255,255,0.6); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .why-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.8rem; transition: background .2s; }
+    .why-card:hover { background: rgba(255,255,255,0.09); }
+    .why-icon { width: 46px; height: 46px; background: rgba(255,255,255,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+    .why-title { font-size: 0.92rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .why-desc { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+
+    /* ── TESTIMONIALS ── */
+    .test-section { background: var(--white); }
+    .test-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .test-card { background: var(--bg); border: 1px solid var(--rule); border-radius: 10px; padding: 1.8rem; position: relative; }
+    .test-q { font-size: 3.5rem; color: var(--blue); opacity: 0.12; position: absolute; top: 1rem; right: 1.5rem; font-family: Georgia, serif; line-height: 1; user-select: none; }
+    .test-text { font-size: 0.9rem; line-height: 1.8; color: var(--ink2); font-style: italic; margin-bottom: 1.3rem; }
+    .test-stars { color: #F59E0B; font-size: 0.8rem; margin-bottom: 0.8rem; }
+    .test-author { display: flex; align-items: center; gap: 0.75rem; }
+    .test-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700; flex-shrink: 0; }
+    .test-name { font-size: 0.85rem; font-weight: 700; color: var(--ink); }
+    .test-loc { font-size: 0.72rem; color: var(--muted); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner { background: var(--blue-lt); padding: 3.5rem 5vw; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-top: 1px solid #D1E5FA; border-bottom: 1px solid #D1E5FA; }
+    .cta-text h3 { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 800; color: var(--blue-dk); margin-bottom: 0.4rem; }
+    .cta-text p { font-size: 0.93rem; color: var(--muted); }
+    .btn-blue { background: var(--blue); color: #fff; padding: 0.9rem 2.2rem; border-radius: 8px; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: background .2s; white-space: nowrap; }
+    .btn-blue:hover { background: var(--blue-md); }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--bg); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.8rem; }
+    .cinfo { display: flex; gap: 1rem; align-items: flex-start; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 1.1rem; }
+    .cinfo-icon { width: 40px; height: 40px; flex-shrink: 0; border-radius: 8px; background: var(--blue-lt); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .cinfo-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.25rem; }
+    .cinfo-val { font-size: 0.86rem; color: var(--ink2); line-height: 1.65; }
+    .cinfo-val a { color: var(--ink2); text-decoration: none; }
+    .cinfo-val a:hover { color: var(--blue); }
+    .hours-table { width: 100%; font-size: 0.82rem; margin-top: 0.3rem; }
+    .hours-table td { padding: 0.2rem 0; color: var(--ink2); }
+    .hours-table td:last-child { color: var(--green); font-weight: 600; text-align: right; }
+    .map-embed { width: 100%; height: 220px; border: none; border-radius: 10px; margin-top: 1rem; display: block; }
+    .form-card { background: var(--white); border: 1px solid var(--rule); border-radius: 12px; padding: 2.2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .form-title { font-size: 1.1rem; font-weight: 800; color: var(--blue-dk); margin-bottom: 1.5rem; }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .fgroup { margin-bottom: 1rem; }
+    .fgroup label { display: block; font-size: 0.7rem; font-weight: 600; color: var(--muted); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .fgroup input, .fgroup select, .fgroup textarea { width: 100%; background: var(--bg); border: 1.5px solid var(--rule); border-radius: 7px; color: var(--ink); font-family: inherit; font-size: 0.9rem; padding: 0.72rem 0.9rem; outline: none; transition: border-color .2s; -webkit-appearance: none; }
+    .fgroup input:focus, .fgroup select:focus, .fgroup textarea:focus { border-color: var(--blue); background: #fff; }
+    .fgroup textarea { resize: vertical; min-height: 90px; }
+    .fsubmit { width: 100%; background: var(--blue); color: #fff; border: none; border-radius: 8px; padding: 0.95rem; font-family: inherit; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: background .2s; margin-top: 0.4rem; }
+    .fsubmit:hover { background: var(--blue-md); }
+
+    /* ── FOOTER ── */
+    .footer-main { background: var(--blue-dk); padding: 4rem 5vw 2.5rem; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: 3rem; }
+    .footer-logo { height: 38px; filter: brightness(10); margin-bottom: 0.8rem; display: block; }
+    .footer-name { font-size: 0.95rem; font-weight: 800; color: #fff; margin-bottom: 0.6rem; }
+    .footer-about { font-size: 0.82rem; color: rgba(255,255,255,0.48); line-height: 1.75; }
+    .footer-social { display: flex; gap: 0.6rem; margin-top: 1.2rem; }
+    .soc-btn { width: 34px; height: 34px; background: rgba(255,255,255,0.08); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; text-decoration: none; color: rgba(255,255,255,0.6); transition: background .2s, color .2s; }
+    .soc-btn:hover { background: var(--blue); color: #fff; }
+    .footer-col-title { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 1.2rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .footer-links a { font-size: 0.83rem; color: rgba(255,255,255,0.52); text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-contact-line { font-size: 0.82rem; color: rgba(255,255,255,0.5); margin-bottom: 0.65rem; line-height: 1.65; }
+    .footer-contact-line a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    .footer-contact-line a:hover { color: #fff; }
+    .footer-bottom { background: #06131f; padding: 1.1rem 5vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; font-size: 0.73rem; color: rgba(255,255,255,0.28); }
+    .footer-bottom a { color: rgba(255,255,255,0.38); text-decoration: none; }
+
+    /* ── SECTION HEADER UTIL ── */
+    .section-header-row { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem; }
+    .view-all { font-size: 0.82rem; font-weight: 600; color: var(--blue); text-decoration: none; white-space: nowrap; }
+    .view-all:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 60px 5vw; }
+      .hero-right { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .facilities-grid { grid-template-columns: 1fr 1fr; }
+      .depts-grid { grid-template-columns: 1fr 1fr; }
+      .doctors-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 640px) {
+      .facilities-grid, .depts-grid, .why-grid, .test-grid { grid-template-columns: 1fr; }
+      .doctors-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .frow { grid-template-columns: 1fr; }
+      .footer-main { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-pillars { grid-template-columns: 1fr; }
+      .topbar-left { display: none; }
+      .hero-stats { flex-wrap: wrap; gap: 1rem; }
+      .hstat { border-right: none; margin-right: 0; padding-right: 0; }
+      .cta-banner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">📍 A-43, Patel Nagar 2, Near Metro Station, Ghaziabad U.P – 201001</div>
+  <div class="topbar-right">
+    <span class="emergency-badge">🚨 24×7 Emergency</span>
+    <a href="tel:+919211704745">📞 +91-9211704745</a>
+    <span class="top-sep">|</span>
+    <a href="tel:01204448294">📞 0120-4448294</a>
+    <span class="top-sep">|</span>
+    <a href="mailto:hospitalshushila@gmail.com">✉ hospitalshushila@gmail.com</a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#home">
+    <img src="https://sushilamultispecialityhospital.in/Assets/logo.png" alt="Sushila Hospital"/>
+    <div class="nav-brand-text">
+      <div class="nav-brand-name">Sushila Hospital</div>
+      <div class="nav-brand-sub">Multi-Speciality · Ghaziabad, Delhi NCR</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#facilities">Facilities</a></li>
+    <li><a href="#departments">Departments</a></li>
+    <li><a href="#doctors">Doctors</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-book">Book Appointment</a>
+  <div class="hamburger" onclick="this.classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-badge">Trusted Multi-Speciality Hospital · Delhi NCR</div>
+    <h1>Your Health,<br><span>Our Priority.</span></h1>
+    <p class="hero-sub">Expert doctors, modern facilities, and compassionate care — all under one roof in Ghaziabad, serving Delhi NCR. Committed to affordable, high-quality healthcare for every patient.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-white">Book Appointment</a>
+      <a href="#departments" class="btn-outline-w">Our Specialities</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-num">1000+</div><div class="hstat-label">Happy Patients</div></div>
+      <div class="hstat"><div class="hstat-num">60</div><div class="hstat-label">Bed Hospital</div></div>
+      <div class="hstat"><div class="hstat-num">18</div><div class="hstat-label">ICU Beds</div></div>
+      <div class="hstat"><div class="hstat-num">3</div><div class="hstat-label">Operation Theatres</div></div>
+      <div class="hstat"><div class="hstat-num">24×7</div><div class="hstat-label">Emergency</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-img" src="https://sushilamultispecialityhospital.in/Assets/family.jpg" alt="Sushila Hospital Doctors"/>
+    <div class="hero-card-strip">
+      <div class="hcs-icon">✅</div>
+      <div class="hcs-text">
+        <strong>Verified & Accredited Hospital</strong>
+        <span>Expert specialists across 20+ medical departments</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK DEPT STRIP -->
+<div class="dept-strip">
+  <a class="ds-item" href="#departments"><div class="ds-icon">❤️</div><div class="ds-label">Cardiology</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">🦴</div><div class="ds-label">Orthopaedics</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">👶</div><div class="ds-label">Paediatrics</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">👩‍⚕️</div><div class="ds-label">Gynaecology</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">🧬</div><div class="ds-label">Oncology</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">🫁</div><div class="ds-label">Pulmonology</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">🧠</div><div class="ds-label">Neurology</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">💉</div><div class="ds-label">Nephrology</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">🏥</div><div class="ds-label">ICU & Emergency</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">🦷</div><div class="ds-label">Dentistry</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">🩺</div><div class="ds-label">Spine Surgery</div></a>
+  <a class="ds-item" href="#departments"><div class="ds-icon">🩻</div><div class="ds-label">Radiology</div></a>
+</div>
+
+<!-- ══ ABOUT ══ -->
+<section class="about-section section" id="about">
+  <div class="about-grid">
+    <div>
+      <img class="about-img" src="https://sushilamultispecialityhospital.in/Assets/doctor-picture.png" alt="Sushila Hospital Doctors Team"/>
+    </div>
+    <div>
+      <div class="section-tag">About Us</div>
+      <h2 class="sh">Your Trusted Multi-Speciality Hospital in Delhi NCR</h2>
+      <p class="about-body">Welcome to <strong>Sushila Hospital</strong> — your trusted best multi-speciality hospital in Delhi NCR, Ghaziabad, and Noida. We offer expert medical care with a human touch, combining advanced technology, experienced doctors, and compassionate service.</p>
+      <p class="about-body">Committed to providing affordable healthcare in Delhi NCR, Sushila Hospital ensures quality treatment and patient satisfaction across all departments. Recognized as one of the best hospitals in Delhi, we strive to ensure every patient receives the care they deserve.</p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">🏥</div>
+          <div class="pillar-title">Advanced Critical Care</div>
+          <p class="pillar-text">18-bed ICU & Neonatal units with continuous monitoring and specialized care for adults and newborns.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🚑</div>
+          <div class="pillar-title">Emergency & Maternity</div>
+          <p class="pillar-text">Fully-equipped delivery suites and dedicated emergency ward ensuring timely care round the clock.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🔬</div>
+          <div class="pillar-title">Expert Surgical Facilities</div>
+          <p class="pillar-text">Three modern OTs with advanced C-Arm support for Urology, Ortho, Paediatrics, Gastro & Neurosurgery.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">🛏️</div>
+          <div class="pillar-title">60-Bed Hospital</div>
+          <p class="pillar-text">From general wards to deluxe private rooms — comfortable, hygienic recovery spaces for all patients.</p>
+        </div>
+      </div>
+      <div class="why-list">
+        <div class="why-item">Qualified Doctors with years of experience</div>
+        <div class="why-item">24×7 Emergency & medical assistance</div>
+        <div class="why-item">Modern equipment for accurate diagnosis</div>
+        <div class="why-item">Compassionate, patient-first care</div>
+        <div class="why-item">Rapid response — call in 10 minutes</div>
+        <div class="why-item">TPA & Insurance support available</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FACILITIES ══ -->
+<section class="facilities-section section" id="facilities">
+  <div class="section-header-row">
+    <div>
+      <div class="section-tag">Infrastructure</div>
+      <h2 class="sh">Facilities & Technology</h2>
+      <p class="slead">World-class infrastructure, specialised departments, and round-the-clock support services to ensure comprehensive healthcare for all.</p>
+    </div>
+  </div>
+  <div class="facilities-grid">
+    <div class="facility-card">
+      <img class="facility-img" src="https://sushilamultispecialityhospital.in/Assets/lab.jpg" alt="ICU"/>
+      <div class="facility-body">
+        <div class="facility-name">Intensive Care Unit (ICU)</div>
+        <p class="facility-desc">24×7 critical care with modern life support systems. Advanced ICU in Ghaziabad, Delhi, Noida and Gurgaon — ensuring top-tier emergency treatment across NCR.</p>
+      </div>
+    </div>
+    <div class="facility-card">
+      <img class="facility-img" src="https://sushilamultispecialityhospital.in/Assets/lab1.jpg" alt="Radiology Lab"/>
+      <div class="facility-body">
+        <div class="facility-name">In-House Radiology Lab</div>
+        <p class="facility-desc">Quick access to X-rays, ultrasounds, CT scans, and MRIs. Our in-house lab enables faster diagnosis without leaving the hospital premises.</p>
+      </div>
+    </div>
+    <div class="facility-card">
+      <img class="facility-img" src="https://sushilamultispecialityhospital.in/Assets/lab2.jpg" alt="Deluxe Rooms"/>
+      <div class="facility-body">
+        <div class="facility-name">Deluxe Rooms</div>
+        <p class="facility-desc">Luxury recovery rooms equipped with electronic beds, hygienic bathrooms, and peaceful privacy — ensuring a comfortable healing environment.</p>
+      </div>
+    </div>
+    <div class="facility-card">
+      <img class="facility-img" src="https://sushilamultispecialityhospital.in/Assets/lab3.jpg" alt="60 Beds"/>
+      <div class="facility-body">
+        <div class="facility-name">60-Bed Multi-Speciality Hospital</div>
+        <p class="facility-desc">Serving Delhi, Ghaziabad, Noida, and Gurgaon with 60 beds across general wards and private rooms, offering comfortable and hygienic recovery spaces.</p>
+      </div>
+    </div>
+    <div class="facility-card">
+      <img class="facility-img" src="https://sushilamultispecialityhospital.in/Assets/lab4.jpg" alt="Nursery"/>
+      <div class="facility-body">
+        <div class="facility-name">Nursery (Newborn Care)</div>
+        <p class="facility-desc">Fully equipped nursery for newborns and premature babies, providing specialized and monitored care in a warm, safe environment.</p>
+      </div>
+    </div>
+    <div class="facility-card">
+      <img class="facility-img" src="https://sushilamultispecialityhospital.in/Assets/lab5.jpg" alt="Dialysis"/>
+      <div class="facility-body">
+        <div class="facility-name">Dialysis Centre</div>
+        <p class="facility-desc">Safe, reliable dialysis treatment with expert nephrologists and state-of-the-art machines. Trusted kidney care near Delhi, Ghaziabad, Noida, and Gurgaon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DEPARTMENTS ══ -->
+<section class="depts-section section" id="departments">
+  <div class="section-header-row">
+    <div>
+      <div class="section-tag">Specialities</div>
+      <h2 class="sh">Treatments & Departments</h2>
+      <p class="slead">Expert care across 20+ medical specialities, delivered by experienced professionals using advanced technology.</p>
+    </div>
+  </div>
+  <div class="depts-grid">
+    <div class="dept-card">
+      <span class="dept-icon">❤️</span>
+      <div class="dept-name">Cardiology</div>
+      <p class="dept-desc">ECG, angiography, angioplasty, pacemaker implants, and treatment for heart failure and arrhythmia at one of the best cardiology centres in Delhi NCR.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">👩‍⚕️</span>
+      <div class="dept-name">Obstetrics & Gynaecology</div>
+      <p class="dept-desc">Pregnancy care, infertility treatment, menopause support, and gynaecological surgeries by top gynaecologists in Ghaziabad.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">🧠</span>
+      <div class="dept-name">Neurosurgery</div>
+      <p class="dept-desc">Brain and spine surgeries including trauma, tumours, hydrocephalus, aneurysms, and minimally invasive spine procedures by leading neurosurgeons.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">👶</span>
+      <div class="dept-name">Paediatrics</div>
+      <p class="dept-desc">Trusted child health care in Noida and Ghaziabad for newborns, children, and teens — vaccinations, nutrition, infections, and growth tracking.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">🫁</span>
+      <div class="dept-name">Pulmonary & Critical Care</div>
+      <p class="dept-desc">Asthma, COPD, pneumonia, and respiratory failure with 24×7 critical care, ventilator support, and specialized pulmonologists.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">🦴</span>
+      <div class="dept-name">Orthopaedics & Joint Replacement</div>
+      <p class="dept-desc">Knee/hip replacement, sports injuries, fracture management, arthritis treatment, and joint pain rehabilitation at our trusted orthopaedic centre.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">🩺</span>
+      <div class="dept-name">Spine Surgery</div>
+      <p class="dept-desc">Herniated discs, scoliosis, and degenerative spine diseases using advanced minimally invasive techniques in Ghaziabad and Noida.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">💉</span>
+      <div class="dept-name">Urology</div>
+      <p class="dept-desc">Kidney stones, prostate issues, UTIs, bladder disorders, and male infertility — performed with cutting-edge urological technology.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">👂</span>
+      <div class="dept-name">ENT</div>
+      <p class="dept-desc">Sinusitis, hearing loss, tonsillitis, allergies, tinnitus, and head-neck surgeries by top ENT specialists in Ghaziabad.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">🧠</span>
+      <div class="dept-name">Neurology</div>
+      <p class="dept-desc">Stroke, seizures, migraines, Parkinson's, multiple sclerosis, and comprehensive neuro-rehabilitation programmes.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">💊</span>
+      <div class="dept-name">Nephrology</div>
+      <p class="dept-desc">CKD treatment, dialysis, kidney transplant support, and electrolyte management by experienced nephrologists in Noida and Delhi.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">🧪</span>
+      <div class="dept-name">Oncology</div>
+      <p class="dept-desc">Chemotherapy, surgical oncology, radiation therapy, and palliative care across all cancer types by leading oncologists in Delhi.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">✂️</span>
+      <div class="dept-name">Plastic & Cosmetic Surgery</div>
+      <p class="dept-desc">Facial aesthetics, scar revision, burn care, body contouring, and reconstructive procedures at our surgery centre in Ghaziabad.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">🦷</span>
+      <div class="dept-name">Dentistry</div>
+      <p class="dept-desc">Braces, implants, fillings, extractions, smile design, root canal, and cosmetic dentistry by expert dentists in Delhi NCR.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">✂️</span>
+      <div class="dept-name">Laparoscopic & Bariatric Surgery</div>
+      <p class="dept-desc">Hernia, gallbladder, piles, obesity, and appendix removal using safe, minimally invasive techniques — best in Delhi NCR.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">📋</span>
+      <div class="dept-name">Internal Medicine</div>
+      <p class="dept-desc">Diabetes, hypertension, thyroid issues, infections, and chronic condition management with personalized care by expert physicians.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">🧪</span>
+      <div class="dept-name">Gastroenterology</div>
+      <p class="dept-desc">Acidity, ulcers, IBS, hepatitis, pancreatitis, and liver diseases with endoscopy, colonoscopy, and lifestyle-based solutions.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">👨‍⚕️</span>
+      <div class="dept-name">Dermatology</div>
+      <p class="dept-desc">Acne, eczema, pigmentation, rashes, fungal infections, hair loss, and cosmetic treatments like Botox and chemical peels.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">♿</span>
+      <div class="dept-name">Physiotherapy</div>
+      <p class="dept-desc">Post-surgery rehab, joint pain, paralysis, mobility improvement, and sports injury recovery using modern physiotherapy techniques.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">🩻</span>
+      <div class="dept-name">Radiology & Imaging</div>
+      <p class="dept-desc">X-ray, ultrasound, CT scan, MRI, and Doppler imaging for accurate diagnosis and guided treatments at our in-house radiology lab.</p>
+    </div>
+    <div class="dept-card">
+      <span class="dept-icon">💉</span>
+      <div class="dept-name">Anaesthesia</div>
+      <p class="dept-desc">Expert pre-op evaluations, intraoperative monitoring, and post-op recovery support ensuring pain-free surgeries.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DOCTORS ══ -->
+<section class="doctors-section section" id="doctors">
+  <div class="section-header-row">
+    <div>
+      <div class="section-tag">Our Team</div>
+      <h2 class="sh">Meet Our Doctors</h2>
+      <p class="slead">Our dedicated team of expert doctors — committed to trusted, compassionate healthcare with years of experience and advanced medical knowledge.</p>
+    </div>
+  </div>
+  <div class="doctors-grid">
+    <div class="doctor-card">
+      <div class="doctor-photo"><span class="doctor-photo-ph">👨‍⚕️</span></div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Anupam Singh</div>
+        <div class="doctor-spec">MD · Internal Medicine</div>
+        <div class="doctor-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rval">4.9</span>
+          <span class="rcnt">· 1,200 reviews</span>
+        </div>
+      </div>
+    </div>
+    <div class="doctor-card">
+      <div class="doctor-photo"><span class="doctor-photo-ph">👨‍⚕️</span></div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. J Kumar</div>
+        <div class="doctor-spec">MD · Paediatrics</div>
+        <div class="doctor-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rval">4.8</span>
+          <span class="rcnt">· 1,100 reviews</span>
+        </div>
+      </div>
+    </div>
+    <div class="doctor-card">
+      <div class="doctor-photo"><span class="doctor-photo-ph">👩‍⚕️</span></div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Komal Goel</div>
+        <div class="doctor-spec">MD · Critical Care</div>
+        <div class="doctor-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rval">4.7</span>
+          <span class="rcnt">· 950 reviews</span>
+        </div>
+      </div>
+    </div>
+    <div class="doctor-card">
+      <div class="doctor-photo"><span class="doctor-photo-ph">👨‍⚕️</span></div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Siddharth Anand</div>
+        <div class="doctor-spec">MD · Pulmonary Medicine</div>
+        <div class="doctor-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rval">4.8</span>
+          <span class="rcnt">· 1,000 reviews</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALLERY ══ -->
+<section class="gallery-section section" id="gallery">
+  <div class="section-header-row">
+    <div>
+      <div class="section-tag">Our Gallery</div>
+      <h2 class="sh">Events, Milestones & Daily Life</h2>
+      <p class="slead">Glimpses of our hospital's events, milestones, and day-to-day activities. We believe in sharing our journey with the community.</p>
+    </div>
+  </div>
+  <div class="gallery-grid">
+    <img class="gallery-img" src="https://sushilamultispecialityhospital.in/Assets/media3.jpeg" alt="Hospital Event"/>
+    <img class="gallery-img" src="https://sushilamultispecialityhospital.in/Assets/media4.jpeg" alt="Hospital Event"/>
+    <img class="gallery-img" src="https://sushilamultispecialityhospital.in/Assets/media5.jpeg" alt="Hospital Event"/>
+    <img class="gallery-img" src="https://sushilamultispecialityhospital.in/Assets/media6.jpeg" alt="Hospital Event"/>
+    <img class="gallery-img" src="https://sushilamultispecialityhospital.in/Assets/media10.jpeg" alt="Hospital Event"/>
+    <img class="gallery-img" src="https://sushilamultispecialityhospital.in/Assets/media11.jpg" alt="Hospital Event"/>
+  </div>
+</section>
+
+<!-- ══ WHY CHOOSE ══ -->
+<section class="why-section section">
+  <div class="section-tag">Why Us</div>
+  <h2 class="sh">Why Choose Sushila Hospital?</h2>
+  <p class="slead">Recognized as No. 1 hospital in Delhi — combining expert doctors, advanced medical facilities, and compassionate care to deliver the best treatment outcomes.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">👨‍⚕️</div>
+      <div class="why-title">Qualified & Caring Doctors</div>
+      <p class="why-desc">Experienced professionals delivering top-quality healthcare services with genuine care, dedication, and years of clinical expertise.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚨</div>
+      <div class="why-title">24×7 Emergency Services</div>
+      <p class="why-desc">Round-the-clock medical assistance to ensure you're never without support when you need it most — 365 days a year.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔬</div>
+      <div class="why-title">Modern Equipment</div>
+      <p class="why-desc">State-of-the-art technology ensures accurate diagnosis and effective treatment across all departments and specialities.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Affordable Quality Care</div>
+      <p class="why-desc">World-class medical care that's accessible and affordable for every family — with TPA and insurance support available.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Call in 10 Minutes</div>
+      <p class="why-desc">Rapid response team ready to assist with appointments and emergency queries within minutes of your call.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <div class="why-title">Enthusiastic Support Staff</div>
+      <p class="why-desc">Friendly and knowledgeable staff ready to guide you through every step of your care — from admission to discharge.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="test-section section">
+  <div class="section-tag">Patient Reviews</div>
+  <h2 class="sh">What Our Patients Say</h2>
+  <p class="slead">Over 1,000+ patients have trusted us with their health. Here's what some of them have to say about their experience.</p>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-q">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">Sushila Hospital proved to be a cost-effective and reliable option, especially during the COVID-19 scenario. Their support for TPA and insurance processes was smooth. Overall, the facilities and services were commendable.</p>
+      <div class="test-author">
+        <div class="test-avatar">S</div>
+        <div><div class="test-name">Sreejith Chandra</div><div class="test-loc">Delhi, India</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-q">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">A truly life-saving experience at Sushila Hospital. The doctors are highly qualified and compassionate, and the nursing staff is very supportive. Special thanks to Dr. Saleem sir for standing by our family like his own. Forever grateful!</p>
+      <div class="test-author">
+        <div class="test-avatar">F</div>
+        <div><div class="test-name">Faizan Khan</div><div class="test-loc">Delhi, India</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-q">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">The hospital environment is clean and organized. Doctors take time to understand your condition, and the nursing care is attentive. One of the best healthcare experiences I've had in the city.</p>
+      <div class="test-author">
+        <div class="test-avatar">A</div>
+        <div><div class="test-name">Anuj Kumar</div><div class="test-loc">Delhi NCR</div></div>
+      </div>
+    </div>
+    <div class="test-card">
+      <div class="test-q">"</div>
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">Our experience at Sushila Hospital was comforting. The staff guided us well throughout the treatment. Affordable care with quality attention — highly recommended for anyone seeking good healthcare in the region.</p>
+      <div class="test-author">
+        <div class="test-avatar">A</div>
+        <div><div class="test-name">Ankita Negi</div><div class="test-loc">Uttarakhand</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="cta-text">
+    <h3>Ready to Book an Appointment?</h3>
+    <p>Our team is available 24×7. Get expert medical advice — no long waits, no hassle.</p>
+  </div>
+  <a href="#contact" class="btn-blue">Book Appointment Now</a>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact-section section" id="contact">
+  <div class="section-tag">Get in Touch</div>
+  <h2 class="sh" style="margin-bottom:3rem;">Contact Us</h2>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-info">
+        <div class="cinfo">
+          <div class="cinfo-icon">📍</div>
+          <div>
+            <div class="cinfo-label">Address</div>
+            <div class="cinfo-val">Sushila Multispeciality Hospital,<br>A-43, Patel Nagar 2, Near Metro Station,<br>Chhabil Das Marg, Near Pelican Hotel,<br>Ghaziabad, U.P – 201001<br><br><a href="https://www.google.com/maps?q=Sushila+Multispeciality+Hospital,+Block+A,+A-43,+Chhabil+Das+Marg,+near+Pelican+Hotel,+Pocket+D,+Patel+Nagar+2nd,+Patel+Nagar,+Ghaziabad,+Uttar+Pradesh+201001" target="_blank" style="color:var(--blue);">View on Google Maps →</a></div>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon">📞</div>
+          <div>
+            <div class="cinfo-label">Phone</div>
+            <div class="cinfo-val">
+              Records / Appointments: <a href="tel:+919211704745">+91-9211704745</a><br>
+              Customer Care: <a href="tel:01204448294">0120-4448294</a>
+            </div>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon">✉</div>
+          <div>
+            <div class="cinfo-label">Email</div>
+            <div class="cinfo-val"><a href="mailto:hospitalshushila@gmail.com">hospitalshushila@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon">🕐</div>
+          <div>
+            <div class="cinfo-label">Opening Hours</div>
+            <div class="cinfo-val">
+              <table class="hours-table">
+                <tr><td>Monday</td><td>Open 24/7</td></tr>
+                <tr><td>Tuesday</td><td>Open 24/7</td></tr>
+                <tr><td>Wednesday</td><td>Open 24/7</td></tr>
+                <tr><td>Thursday</td><td>Open 24/7</td></tr>
+                <tr><td>Friday</td><td>Open 24/7</td></tr>
+                <tr><td>Saturday</td><td>Open 24/7</td></tr>
+                <tr><td>Sunday</td><td>Open 24/7</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon">📱</div>
+          <div>
+            <div class="cinfo-label">Follow Us</div>
+            <div class="cinfo-val">
+              <a href="https://www.facebook.com/sushilahospital" target="_blank">Facebook</a> &nbsp;·&nbsp;
+              <a href="https://www.instagram.com/sushilahospital" target="_blank">Instagram</a> &nbsp;·&nbsp;
+              <a href="https://www.youtube.com/sushilahospital" target="_blank">YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <iframe class="map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14016.109226874164!2d77.40798030305954!3d28.670774419096535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cf049355b682f%3A0x6124b6c81b91af3f!2sSushila%20Multispeciality%20Hospital!5e0!3m2!1sen!2sin!4v1721308622469!5m2!1sen!2sin" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div>
+      <div class="form-card">
+        <div class="form-title">Book an Appointment</div>
+        <div class="frow">
+          <div class="fgroup"><label>Full Name</label><input type="text" placeholder="Your full name"/></div>
+          <div class="fgroup"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"/></div>
+        </div>
+        <div class="fgroup"><label>Email Address</label><input type="email" placeholder="you@email.com"/></div>
+        <div class="fgroup">
+          <label>Department / Speciality</label>
+          <select>
+            <option value="">Select Department</option>
+            <option>Cardiology</option>
+            <option>Obstetrics & Gynaecology</option>
+            <option>Neurosurgery</option>
+            <option>Paediatrics</option>
+            <option>Pulmonary & Critical Care</option>
+            <option>Orthopaedics & Joint Replacement</option>
+            <option>Spine Surgery</option>
+            <option>Urology</option>
+            <option>ENT</option>
+            <option>Neurology</option>
+            <option>Nephrology</option>
+            <option>Oncology</option>
+            <option>Plastic & Cosmetic Surgery</option>
+            <option>Dentistry</option>
+            <option>Laparoscopic & Bariatric Surgery</option>
+            <option>Internal Medicine</option>
+            <option>Gastroenterology</option>
+            <option>Dermatology</option>
+            <option>Physiotherapy</option>
+            <option>Radiology</option>
+            <option>Anaesthesia</option>
+            <option>ICU & Emergency</option>
+          </select>
+        </div>
+        <div class="frow">
+          <div class="fgroup"><label>Preferred Date</label><input type="date"/></div>
+          <div class="fgroup"><label>Preferred Time</label>
+            <select>
+              <option value="">Select Time</option>
+              <option>Morning (9 AM – 12 PM)</option>
+              <option>Afternoon (12 PM – 3 PM)</option>
+              <option>Evening (3 PM – 6 PM)</option>
+              <option>Emergency (Any Time)</option>
+            </select>
+          </div>
+        </div>
+        <div class="fgroup"><label>Message / Symptoms (Optional)</label><textarea placeholder="Describe your symptoms or reason for visit…"></textarea></div>
+        <button class="fsubmit">Confirm Appointment →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer-main">
+  <div>
+    <img class="footer-logo" src="https://sushilamultispecialityhospital.in/Assets/logo.png" alt="Sushila Hospital"/>
+    <div class="footer-name">Sushila Hospital</div>
+    <p class="footer-about">A multi-speciality and trauma care centre, trusted since inception for delivering affordable, high-quality healthcare with compassion. Recognized as one of the best hospitals in Delhi NCR.</p>
+    <div class="footer-social">
+      <a class="soc-btn" href="https://www.facebook.com/sushilahospital" target="_blank">f</a>
+      <a class="soc-btn" href="https://www.instagram.com/sushilahospital" target="_blank">in</a>
+      <a class="soc-btn" href="https://www.youtube.com/sushilahospital" target="_blank">▶</a>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-title">Quick Links</div>
+    <ul class="footer-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#facilities">Facilities & Technology</a></li>
+      <li><a href="#departments">Treatments & Specialities</a></li>
+      <li><a href="#doctors">Meet Our Doctors</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">Departments</div>
+    <ul class="footer-links">
+      <li><a href="#departments">Cardiology</a></li>
+      <li><a href="#departments">Gynaecology</a></li>
+      <li><a href="#departments">Orthopaedics</a></li>
+      <li><a href="#departments">Paediatrics</a></li>
+      <li><a href="#departments">ICU & Emergency</a></li>
+      <li><a href="#departments">Internal Medicine</a></li>
+      <li><a href="#departments">Pulmonary & Critical Care</a></li>
+      <li><a href="#departments">Oncology</a></li>
+      <li><a href="#departments">Neurology & Neurosurgery</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">Get in Touch</div>
+    <div class="footer-contact-line">📍 A-43, Patel Nagar 2, Chhabil Das Marg,<br>Near Pelican Hotel,<br>Ghaziabad, U.P – 201001</div>
+    <div class="footer-contact-line">📞 <a href="tel:+919211704745">+91-9211704745</a></div>
+    <div class="footer-contact-line">📞 <a href="tel:01204448294">0120-4448294</a></div>
+    <div class="footer-contact-line">✉ <a href="mailto:hospitalshushila@gmail.com">hospitalshushila@gmail.com</a></div>
+    <div class="footer-contact-line">🚨 Open 24 × 7 · All Days</div>
+  </div>
+</div>
+<div class="footer-bottom">
+  <span>© 2025 Sushila Hospital. All Rights Reserved.</span>
+  <span>Designed by <a href="https://www.websiteseotool.in/" target="_blank">Advertising India</a></span>
+</div>
+
+</body>
+</html>
